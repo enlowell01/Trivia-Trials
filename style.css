@@ -6,6 +6,7 @@ body {
     text-align: center;
 }
 
+/* Creates title card at the top of the webpage */
 #title-card {
     background-color: #00beff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -19,9 +20,52 @@ body {
     -1px 1px 0 #d30fa2,
     1px 1px 0 #d30fa2;
     display: inline-block;
-    margin: 10px;
+    margin: 20px auto 10px auto;
     padding: 10px;
     border: 5px solid #d30fa2;
     border-radius: 25px;
 }
+
+/* Creates box where game is housed */
+#game-box {
+    position:relative;
+    margin: 20px auto;
+    height: 650px;
+    width: 900px;
+    border: 5px solid #00beff;
+    background-color:#120a35;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    /*@katith-animations. Floating Clouds Sticker. giphy.com. https://giphy.com/stickers/transparent-clouds-floating-ZFWOw9kyExBX2tbVCc */
+    background-image: url('./clouds.gif');
+}
+
+/* Styles game box inputs */
+#game-box > label {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    text-shadow:
+   -1px -1px 0 #d30fa2,  
+    1px -1px 0 #d30fa2,
+    -1px 1px 0 #d30fa2,
+    1px 1px 0 #d30fa2;
+    font-size: 25px;
+    margin: 20px;
+    padding: 15px;
+    border: 5px solid #d30fa2;
+    border-radius: 25px;
+    background-color:#00beff
+}
+
+#game-box > label:hover {
+    background-color:#24146d;
+}
+
+/*#game-box > label > input {
+    visibility: hidden;
+}*/
 

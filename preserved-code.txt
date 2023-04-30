@@ -1,0 +1,14 @@
+/* Creates background clouds gif for game box */
+#game-box::before {
+    /* How to change background-image opacity in CSS without affecting text | HTML/CSS. coder-coder.com. https://coder-coder.com/background-image-opacity/ */
+    content: "";
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.5;
+    background-size: cover;
+    /*@katith-animations. Floating Clouds Sticker. giphy.com. https://giphy.com/stickers/transparent-clouds-floating-ZFWOw9kyExBX2tbVCc */
+    background-image: url('./clouds.gif');
+    position: absolute;
+}
