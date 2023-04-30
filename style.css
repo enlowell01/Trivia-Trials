@@ -1,0 +1,27 @@
+body {
+    background-color: #24146d;
+}
+
+#title-div {
+    text-align: center;
+}
+
+#title-card {
+    background-color: #00beff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 3em;
+    text-align: center;
+    color: white;
+    /*Coyier, C.(2010). Adding Stroke to Web Text. CSS-Tricks. [Source Code]. https://css-tricks.com/adding-stroke-to-web-text/ */
+    text-shadow:
+   -1px -1px 0 #d30fa2,  
+    1px -1px 0 #d30fa2,
+    -1px 1px 0 #d30fa2,
+    1px 1px 0 #d30fa2;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border: 5px solid #d30fa2;
+    border-radius: 25px;
+}
+
