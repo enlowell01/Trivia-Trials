@@ -10,7 +10,7 @@ body {
 #title-card {
     background-color: #00beff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 3em;
+    font-size: 4em;
     text-align: center;
     color: white;
     /*Coyier, C.(2010). Adding Stroke to Web Text. CSS-Tricks. [Source Code]. https://css-tricks.com/adding-stroke-to-web-text/ */
@@ -29,23 +29,58 @@ body {
 /* Creates box where game is housed */
 #game-box {
     position:relative;
-    margin: 20px auto;
+    margin-left: auto;
+    margin-right:auto;
+    margin-top:20px;
+    left: 0;
+    right: 0;
     height: 650px;
     width: 900px;
+    text-align: center;
     border: 5px solid #00beff;
     background-color:#120a35;
     border-radius: 10px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
     /*@katith-animations. Floating Clouds Sticker. giphy.com. https://giphy.com/stickers/transparent-clouds-floating-ZFWOw9kyExBX2tbVCc */
     background-image: url('./clouds.gif');
 }
 
+#game-form {
+    position:absolute;
+    margin:auto;
+    background-color: transparent;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+    width:100%;
+    top: 0;
+    left: 0;
+}
+
+#question-text {
+    text-align: center;
+    position:relative;
+    margin-bottom:10px;
+    z-index:9;
+    top: 100px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    text-shadow:
+   -1px -1px 0 #d30fa2,  
+    1px -1px 0 #d30fa2,
+    -1px 1px 0 #d30fa2,
+    1px 1px 0 #d30fa2;
+    border: 3px solid #8013ac;
+    border-radius: 25px;
+    padding:15px;
+    background-color:#00beff;
+    display:inline-block;
+}
+
 /* Styles game box inputs */
-#game-box > label {
+.answer-label {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
     text-shadow:
@@ -56,16 +91,19 @@ body {
     font-size: 25px;
     margin: 20px;
     padding: 15px;
-    border: 5px solid #d30fa2;
+    border: 2px solid #8013ac;
     border-radius: 25px;
     background-color:#00beff
 }
 
-#game-box > label:hover {
+.answer-label:hover {
     background-color:#24146d;
 }
 
-/*#game-box > label > input {
-    visibility: hidden;
-}*/
+.answer-choice {
+    visibility:hidden;
+    position:absolute;
+}
+
+
 

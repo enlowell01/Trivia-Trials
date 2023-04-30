@@ -2,28 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="text/javascript" src="script.js"></script>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css"/>
     <title>Trivia Trials</title>
   </head>
   <body>
     <div id="title-div">
-        <h1 id="title-card"></h1>
+        <h1 id="title-card">Trivia Trials</h1>
     </div>
-    <form id="game-box">
-        <input class="answer-choice" type="radio" name="questions" value="answer-1" id="question-1"/>
-        <label class="question-label" for="question-1"></label>
+    <div id="game-box">
+        <h1 id="question-text"></h1>
+        <form id="game-form">
+            <label class="answer-label" for="answer-1">
+                <input class="answer-choice" type="radio" name="answers"  id="answer-1"/>
+            </label>
 
-        <input class="answer-choice" type="radio" name="questions" value="answer-2" id="question-2"/>
-        <label class="question-label" for="question-2"></label>
+            <label class="answer-label" for="answer-2">
+                <input class="answer-choice" type="radio" name="answers"  id="answer-2"/>
+            </label>
 
-        <input class="answer-choice" type="radio" name="questions" value="answer-3" id="question-3"/>
-        <label class="question-label" for="question-3"></label>
+            <label class="answer-label" for="answer-3">
+                <input class="answer-choice" type="radio" name="answers"  id="answer-3"/>
+            </label>
 
-        <input class="answer-choice" type="radio" name="questions" value="answer-4" id="question-4"/>
-        <label class="question-label" for="question-4"></label>
-    </form>
+            <label class="answer-label" for="answer-4">
+                <input class="answer-choice" type="radio" name="answers"  id="answer-4"/>
+            </label>
+        </form>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>
