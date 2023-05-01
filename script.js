@@ -167,6 +167,7 @@ function showResults() {
     }
 
     let scoreTag = document.getElementById('score-tag')
+    
     scoreTag.style.position = 'absolute';
     scoreTag.style.display = 'inline-block';
     scoreTag.style.textAlign = 'center';
