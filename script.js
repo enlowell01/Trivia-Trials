@@ -12,16 +12,27 @@ class Question {
 let questionsList = [];
 let score = 0;
 
-let q1 = new Question("What is 1 + 2?", "3", "5", "4", "3", "8")
-let q2 = new Question("What does a cow drink?", "Milk", "Water", "Milk", "Orange Juice", "Soda")
-let q3 = new Question("What continent is also an island?", "Australia", "North America", "South America", "Africa", "Australia")
+const q1 = new Question("What is 1 + 2?", "3", "5", "4", "3", "8")
+Object.freeze(q1)
+
+const q2 = new Question("What does a cow drink?", "Milk", "Water", "Milk", "Orange Juice", "Soda")
+Object.freeze(q2)
+
+const q3 = new Question("What continent is also an island?", "Australia", "North America", "South America", "Africa", "Australia")
+Object.freeze(q3)
+
 
 questionsList.push(q1, q2, q3);
-console.log(questionsList);
 
 function renderOptions (questionVariable) {
+
     let prompts = document.getElementsByClassName('answer-label')
     let answers = document.getElementsByClassName('answer-choice')
+
+    const solutionVar = questionVariable.answer;
+    console.log(solutionVar);
+    
+    document.getElementById('score-tag').textContent='Your score is: '+score;
 
     document.getElementById("question-text").innerHTML = questionVariable.prompt;
 
@@ -40,70 +51,67 @@ function renderOptions (questionVariable) {
                 if (prompts[i].childNodes.length > 1) {
                     prompts[i].lastChild.remove();
                     insertAfter(document.createTextNode(propValue), prompts[i].lastChild)
+                    answers[i].setAttribute("value", "")
+                    answers[i].setAttribute("value", propValue)
                 } else {
                     insertAfter(document.createTextNode(propValue), prompts[i].lastChild)
-                }
-                answers[i].setAttribute("value", "")
-                console.log(answers[i].value)
-                answers[i].setAttribute("value", propValue)
-                console.log(answers[i].value)
-                if (answers[i].value == questionVariable.answer) {
-                    console.log('yes')
+                    answers[i].setAttribute("value", "")
+                    answers[i].setAttribute("value", propValue)
                 }
             }
         })
     }
 
+    for(let i = 0; i < answers.length; i++) {
+        answers[i].setAttribute('checked', false)
+    }
+
     let completionStatus = false;
     let currentIndex = questionsList.indexOf(questionVariable);
-    
-    function continueQuiz (ready) {
-        if (completionStatus && ready) {
+
+    console.log(solutionVar);
+    console.log(questionVariable.answer)
+    function continueQuiz() {
+        if (completionStatus) {
             currentIndex++;
-            console.log(currentIndex);
+            console.log(currentIndex)
             renderOptions(questionsList[currentIndex])
         }
     }
 
-    function answerSelection() {
-        for(let i = 0; i < answers.length; i++) {
-            answers[i].addEventListener('change', function() {
-                const confirmation = confirm("Are you sure?")
-                if (confirmation) {
-                    if (answers[i].checked == true && answers[i].value == questionVariable.answer) {
-                        console.log('good');        
-                        alert("Good job!")
-                        score++;
-                        completionStatus = true;
-                        console.log(completionStatus);
-                        console.log(answers[i].value)
-                        let readyStatus = false;
-                        setTimeout(() => {
-                            readyStatus = confirm("Are you ready for the next question?")
-                            if (readyStatus) {
-                                continueQuiz(readyStatus)
-                            }
-                        }, 1000)
-                        answers[i].parentNode.style.backgroundColor = '#00ff00';
-                    } else if (answers[i].checked == true && answers[i].value !== questionVariable.answer){
-                        alert("Sorry, no cigar!")
-                        completionStatus = true;
-                        console.log(completionStatus);
-                        console.log(answers[i].value)
-                        let readyStatus = false;
-                        setTimeout(() => {
-                            readyStatus = confirm("Are you ready for the next question?")
-                            if (readyStatus) {
-                                continueQuiz(readyStatus)
-                            }
-                        }, 1000)
-                        answers[i].parentNode.style.backgroundColor = '#cc0000';
-                    }
-                } 
-            })
-        }
-    }
-    answerSelection();
+    for(let i = 0; i < answers.length; i++) {
+        prompts[i].addEventListener('click', function(e) {
+            //let confirmation = confirm("Are you sure?")
+            e.stopPropagation();
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            //if (confirmation) {
+            console.log(solutionVar)
+            if (answers[i].value == solutionVar) {   
+                alert("Good job!")
+                score++;
+                completionStatus = true;
+                let readyStatus = false;
+                setTimeout(() => {
+                    continueQuiz()
+                }, 800)
+                answers[i].parentNode.style.backgroundColor = '#00ff00';
+            } else if (answers[i].value !== solutionVar) {
+                console.log(solutionVar)
+                console.log(answers[i].value == solutionVar);
+                console.log(answers[i].value)
+                alert("Sorry, no cigar!")
+                completionStatus = true;
+                let readyStatus = false;
+                setTimeout(() => {
+                    continueQuiz()
+                }, 800)
+                answers[i].parentNode.style.backgroundColor = '#cc0000';
+            }
+            //} 
+        //})
+        })
+    }   
 }
 
 renderOptions(questionsList[0]);

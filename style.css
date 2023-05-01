@@ -60,6 +60,7 @@ body {
 }
 
 #question-text {
+    font-size:2.5em;
     text-align: center;
     position:relative;
     margin-bottom:10px;
@@ -88,21 +89,42 @@ body {
     1px -1px 0 #d30fa2,
     -1px 1px 0 #d30fa2,
     1px 1px 0 #d30fa2;
-    font-size: 25px;
+    font-size: 30px;
     margin: 20px;
-    padding: 15px;
+    padding: 10px 20px;
     border: 2px solid #8013ac;
     border-radius: 25px;
     background-color:#00beff
 }
 
 .answer-label:hover {
-    background-color:#24146d;
+    background-color:#24146d !important;
 }
 
 .answer-choice {
     visibility:hidden;
     position:absolute;
+}
+
+/* Other styling */
+
+#score-tag {
+    position:absolute;
+    z-index:9;
+    top: 30px;
+    right: 750px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    text-shadow:
+   -1px -1px 0 #d30fa2,  
+    1px -1px 0 #d30fa2,
+    -1px 1px 0 #d30fa2,
+    1px 1px 0 #d30fa2;
+    margin: 20px;
+    padding: 15px;
+    border: 2px solid #8013ac;
+    border-radius: 25px;
+    background-color:#00beff
 }
 
 
