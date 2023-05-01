@@ -51,6 +51,7 @@ Object.freeze(q10)
 
 questionsList.push(q1, q2, q3, q4, q5, q6, q7, q8, q9, q10);
 
+
 // Puts current questions and answers on screen and implements ability to select an answer and proceed
 
 function renderOptions (questionVariable) {
@@ -141,7 +142,61 @@ function renderOptions (questionVariable) {
     })
 }   
 
-renderOptions(questionsList[0]);
+// Functionality for start screen
+
+function startGame() {
+    let gameContent = document.getElementById('game-box').children;
+
+    for(let i = 0; i < gameContent.length; i++) {
+        gameContent[i].style.visibility = 'hidden';
+    }
+    
+    const startButtonForm = document.createElement('form')
+    const startButton = document.createElement('input')
+    startButton.setAttribute('id', 'start-button')
+    startButton.setAttribute('type', 'button')
+    startButton.setAttribute('value', 'Start Game')
+    startButton.style.margin = '15px auto'
+    startButton.style.fontSize = '3.5em'
+    startButton.style.fontFamily = 'Verdana, Geneva, Tahoma, sans-serif'
+    startButton.style.textShadow = '-1px -1px 0 #d30fa2,  1px -1px 0 #d30fa2, -1px 1px 0 #d30fa2, 1px 1px 0 #d30fa2'
+    startButton.style.color = 'white'
+    startButton.style.backgroundColor = '#00beff'
+    startButton.style.border = '4px solid #d30fa2'
+    startButton.style.borderRadius = '20px'
+    startButton.style.padding = '15px'
+
+    startButton.addEventListener('mouseover', () => {
+        startButton.style.backgroundColor = '#24146d'
+        startButton.addEventListener('mouseout', () => {
+            startButton.style.backgroundColor = '#00beff'
+        })
+    })
+
+    startButtonForm.style.position = 'absolute'
+    startButtonForm.style.display = 'inline-block'
+    startButtonForm.style.textAlign = 'center'
+    startButtonForm.style.bottom = '250px'
+    startButtonForm.style.top = '250px'
+    startButtonForm.style.left = '250px'
+    startButtonForm.style.right = '250px'
+    startButtonForm.style.margin = 'auto'
+    startButtonForm.style.width = 'auto'
+
+    startButtonForm.appendChild(startButton)
+
+    document.getElementById('game-box').appendChild(startButtonForm)
+
+    startButton.addEventListener('click', () => {
+        for(let i = 0; i < gameContent.length; i++) {
+            gameContent[i].style.visibility = null;
+        }
+        startButtonForm.remove();
+        renderOptions(questionsList[0]);
+    })
+}
+
+startGame();
 
 // Renders final results
 
