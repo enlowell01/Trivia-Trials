@@ -9,7 +9,7 @@ Citations:
 	Coyier, C.(2010). Adding Stroke to Web Text. CSS-Tricks. https://css-tricks.com/adding-stroke-to-web-text/
 	How to change background-image opacity in CSS without affecting text | HTML/CSS. coder-coder.com. https://coder-coder.com/background-image-opacity/
 	
-	@katith-animations. Floating Clouds Sticker. giphy.com. https://giphy.com/stickers/transparent-clouds-floating-ZFWOw9kyExBX2tbVCc
+	katith-animations. Floating Clouds Sticker. giphy.com. https://giphy.com/stickers/transparent-clouds-floating-ZFWOw9kyExBX2tbVCc
 	
 	JavaScript insertAfter. javascripttutorial.net. https://www.javascripttutorial.net/javascript-dom/javascript-insertafter/
 	
