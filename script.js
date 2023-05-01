@@ -1,3 +1,5 @@
+// Create Question class
+
 class Question {
     constructor(prompt, answer, option0, option1, option2, option3) {
         this.prompt = prompt;
@@ -9,8 +11,13 @@ class Question {
     }
 }
 
+// Set global variables
+
 let questionsList = [];
 let score = 0;
+
+// Create question objects
+/* Harper, H. (2023). 101 BEST Trivia Questions in Ranking Order [2023 Edition]. QuizBreaker. https://www.quizbreaker.com/trivia-questions#general-trivia-questions */
 
 const q1 = new Question("What is 1 + 2?", "3", "5", "4", "3", "8")
 Object.freeze(q1)
@@ -18,19 +25,42 @@ Object.freeze(q1)
 const q2 = new Question("What does a cow drink?", "Milk", "Water", "Milk", "Orange Juice", "Soda")
 Object.freeze(q2)
 
-const q3 = new Question("What continent is also an island?", "Australia", "North America", "South America", "Africa", "Australia")
+const q3 = new Question("Which continent is also an island?", "Australia", "North America", "South America", "Africa", "Australia")
 Object.freeze(q3)
 
+const q4 = new Question("What geometric shape is used for stop signs?", "Octagon", "Octagon", "Square", "Triangle", "Circle")
+Object.freeze(q4)
 
-questionsList.push(q1, q2, q3);
+const q5 = new Question(`What is "cynophobia"?`, "Fear of dogs", "Fear of cats", "Fear of negativity", "Fear of the sky", "Fear of dogs")
+Object.freeze(q5)
+
+const q6 = new Question("How many languages are written from right to left?", "12", "8", "21", "12", "13")
+Object.freeze(q6)
+
+const q7 = new Question("Which animal can be seen on the Porsche logo?", "Horse", "Lion", "Horse", "Jaguar", "Eagle")
+Object.freeze(q7)
+
+const q8 = new Question("What is the name of the World's largest ocean?", "Pacific", "Indian", "Atlantic", "Arctic", "Pacific")
+Object.freeze(q8)
+
+const q9 = new Question("Who was the first woman pilot to fly solo across the Atlantic?", "Amelia Earhart", "Sunny Monroe", "Marie Curie", "Jane Austen", "Amelia Earhart")
+Object.freeze(q9)
+
+const q10 = new Question("How long is an Olympic swimming pool (in meters)?", "50 meters", "50 meters", "40 meters", "60 meters", "80 meters")
+Object.freeze(q10)
+
+questionsList.push(q1, q2, q3, q4, q5, q6, q7, q8, q9, q10);
+
+// Puts current questions and answers on screen and implements ability to select an answer and proceed
 
 function renderOptions (questionVariable) {
 
     let prompts = document.getElementsByClassName('answer-label')
-    let answers = document.getElementsByClassName('answer-choice')
+    const answers = document.querySelectorAll('.answer-choice')
+    let currentIndex = questionsList.indexOf(questionVariable)
 
     const solutionVar = questionVariable.answer;
-    console.log(solutionVar);
+
     
     document.getElementById('score-tag').textContent='Your score is: '+score;
 
@@ -51,7 +81,6 @@ function renderOptions (questionVariable) {
                 if (prompts[i].childNodes.length > 1) {
                     prompts[i].lastChild.remove();
                     insertAfter(document.createTextNode(propValue), prompts[i].lastChild)
-                    answers[i].setAttribute("value", "")
                     answers[i].setAttribute("value", propValue)
                 } else {
                     insertAfter(document.createTextNode(propValue), prompts[i].lastChild)
@@ -67,54 +96,90 @@ function renderOptions (questionVariable) {
     }
 
     let completionStatus = false;
-    let currentIndex = questionsList.indexOf(questionVariable);
 
-    console.log(solutionVar);
-    console.log(questionVariable.answer)
     function continueQuiz() {
-        if (completionStatus) {
-            currentIndex++;
+        try {
+            if (completionStatus) {
             console.log(currentIndex)
             renderOptions(questionsList[currentIndex])
+            }
+        }
+        catch(err) {
+            showResults();
         }
     }
 
-    for(let i = 0; i < answers.length; i++) {
-        prompts[i].addEventListener('click', function(e) {
-            //let confirmation = confirm("Are you sure?")
+    answers.forEach(function(item) {
+        console.log(questionVariable.answer)
+        let internalSolution = questionVariable.answer
+        console.log(questionVariable.answer)
+        console.log(internalSolution)
+        item.addEventListener('click', function(e) {
+            console.log(internalSolution)
+            let confirmation = confirm("Are you sure?")
+            if (confirmation) {
+                if (item.value == internalSolution) {
+                    console.log(internalSolution) 
+                    alert("Good job!")
+                    score++;
+                    currentIndex++;
+                    console.log(currentIndex);
+                    completionStatus = true;
+                    let readyStatus = false;
+                    setTimeout(() => {
+                        continueQuiz()
+                    }, 800)
+                    item.parentNode.style.backgroundColor = '#00ff00';
+                } else if (item.value !== internalSolution) {
+                    console.log(internalSolution) 
+                    alert("Sorry, no cigar!")
+                    currentIndex++;
+                    console.log(currentIndex);
+                    completionStatus = true;
+                    let readyStatus = false;
+                    setTimeout(() => {
+                        continueQuiz()
+                    }, 800)
+                    item.parentNode.style.backgroundColor = '#cc0000';
+                }
+            }
             e.stopPropagation();
             e.preventDefault();
             e.stopImmediatePropagation();
-            //if (confirmation) {
-            console.log(solutionVar)
-            if (answers[i].value == solutionVar) {   
-                alert("Good job!")
-                score++;
-                completionStatus = true;
-                let readyStatus = false;
-                setTimeout(() => {
-                    continueQuiz()
-                }, 800)
-                answers[i].parentNode.style.backgroundColor = '#00ff00';
-            } else if (answers[i].value !== solutionVar) {
-                console.log(solutionVar)
-                console.log(answers[i].value == solutionVar);
-                console.log(answers[i].value)
-                alert("Sorry, no cigar!")
-                completionStatus = true;
-                let readyStatus = false;
-                setTimeout(() => {
-                    continueQuiz()
-                }, 800)
-                answers[i].parentNode.style.backgroundColor = '#cc0000';
-            }
-            //} 
-        //})
         })
-    }   
-}
+    })
+}   
 
 renderOptions(questionsList[0]);
+
+// Renders final results
+
+function showResults() {
+
+    let gameContent = document.getElementById('game-box').children;
+
+    for(let i = 0; i < gameContent.length; i++) {
+        if(gameContent[i].id == 'score-tag') {
+            continue
+        } else {
+            gameContent[i].remove();
+        }
+    }
+
+    let scoreTag = document.getElementById('score-tag')
+    scoreTag.style.position = 'absolute';
+    scoreTag.style.display = 'inline-block';
+    scoreTag.style.textAlign = 'center';
+    scoreTag.style.margin = 'auto';
+    scoreTag.style.top = '250px';
+    scoreTag.style.bottom = '250px';
+    scoreTag.style.left = '250px';
+    scoreTag.style.right = '250px';
+    scoreTag.style.opacity = '1.0';
+    scoreTag.style.padding = null;
+    scoreTag.style.fontSize = '3em';
+    scoreTag.textContent += ' Thanks for playing!';
+}
 
 /*for (let i = 0; i < answers.length; i++) {
     answers[i].addEventListener('change', function () {

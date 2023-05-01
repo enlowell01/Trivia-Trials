@@ -9,3 +9,5 @@ Citations:
 	@katith-animations. Floating Clouds Sticker. giphy.com. https://giphy.com/stickers/transparent-clouds-floating-ZFWOw9kyExBX2tbVCc
 	
 	JavaScript insertAfter. javascripttutorial.net. https://www.javascripttutorial.net/javascript-dom/javascript-insertafter/
+	
+	Harper, H. (2023). 101 BEST Trivia Questions in Ranking Order [2023 Edition]. QuizBreaker. https://www.quizbreaker.com/trivia-questions#general-trivia-questions
