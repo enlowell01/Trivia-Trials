@@ -31,7 +31,7 @@ Object.freeze(q3)
 const q4 = new Question("What geometric shape is used for stop signs?", "Octagon", "Octagon", "Square", "Triangle", "Circle")
 Object.freeze(q4)
 
-const q5 = new Question(`What is "cynophobia"?`, "Fear of dogs", "Fear of cats", "Fear of negativity", "Fear of the sky", "Fear of dogs")
+const q5 = new Question(`What is "cynophobia"?`, "Fear of dogs", "Fear of dogs", "Fear of cats", "Fear of negativity", "Fear of the sky")
 Object.freeze(q5)
 
 const q6 = new Question("How many languages are written from right to left?", "12", "8", "21", "12", "13")
@@ -43,7 +43,7 @@ Object.freeze(q7)
 const q8 = new Question("What is the name of the World's largest ocean?", "Pacific", "Indian", "Atlantic", "Arctic", "Pacific")
 Object.freeze(q8)
 
-const q9 = new Question("Who was the first woman pilot to fly solo across the Atlantic?", "Amelia Earhart", "Sunny Monroe", "Marie Curie", "Jane Austen", "Amelia Earhart")
+const q9 = new Question("Who was the first woman pilot to fly solo across the Atlantic?", "Amelia Earhart", "Sunny Monroe", "Amelia Earhart", "Marie Curie", "Jane Austen")
 Object.freeze(q9)
 
 const q10 = new Question("How long is an Olympic swimming pool (in meters)?", "50 meters", "50 meters", "40 meters", "60 meters", "80 meters")
@@ -110,31 +110,22 @@ function renderOptions (questionVariable) {
     }
 
     answers.forEach(function(item) {
-        console.log(questionVariable.answer)
-        let internalSolution = questionVariable.answer
-        console.log(questionVariable.answer)
-        console.log(internalSolution)
         item.addEventListener('click', function(e) {
-            console.log(internalSolution)
             let confirmation = confirm("Are you sure?")
             if (confirmation) {
-                if (item.value == internalSolution) {
-                    console.log(internalSolution) 
+                if (item.value == solutionVar) {
                     alert("Good job!")
                     score++;
                     currentIndex++;
-                    console.log(currentIndex);
                     completionStatus = true;
                     let readyStatus = false;
                     setTimeout(() => {
                         continueQuiz()
                     }, 800)
                     item.parentNode.style.backgroundColor = '#00ff00';
-                } else if (item.value !== internalSolution) {
-                    console.log(internalSolution) 
+                } else if (item.value !== solutionVar) {
                     alert("Sorry, no cigar!")
                     currentIndex++;
-                    console.log(currentIndex);
                     completionStatus = true;
                     let readyStatus = false;
                     setTimeout(() => {
@@ -167,7 +158,7 @@ function showResults() {
     }
 
     let scoreTag = document.getElementById('score-tag')
-    
+
     scoreTag.style.position = 'absolute';
     scoreTag.style.display = 'inline-block';
     scoreTag.style.textAlign = 'center';
