@@ -59,7 +59,7 @@ function renderOptions (questionVariable) {
     let prompts = document.getElementsByClassName('answer-label')
     let answers = document.querySelectorAll('.answer-choice')
     let currentIndex = questionsList.indexOf(questionVariable)
-
+    let completionStatus = false;
     let solutionVar = questionVariable.answer;
 
     
@@ -85,7 +85,6 @@ function renderOptions (questionVariable) {
                     answers[i].setAttribute("value", propValue)
                 } else {
                     insertAfter(document.createTextNode(propValue), prompts[i].lastChild)
-                    answers[i].setAttribute("value", "")
                     answers[i].setAttribute("value", propValue)
                 }
             }
@@ -96,7 +95,6 @@ function renderOptions (questionVariable) {
         answers[i].setAttribute('checked', false)
     }
 
-    let completionStatus = false;
 
     function continueQuiz() {
         try {
@@ -119,7 +117,6 @@ function renderOptions (questionVariable) {
                     score++;
                     currentIndex++;
                     completionStatus = true;
-                    let readyStatus = false;
                     setTimeout(() => {
                         continueQuiz()
                     }, 800)
@@ -128,7 +125,6 @@ function renderOptions (questionVariable) {
                     alert("Sorry, no cigar!")
                     currentIndex++;
                     completionStatus = true;
-                    let readyStatus = false;
                     setTimeout(() => {
                         continueQuiz()
                     }, 800)
@@ -196,8 +192,6 @@ function startGame() {
     })
 }
 
-startGame();
-
 // Renders final results
 
 function showResults() {
@@ -227,6 +221,8 @@ function showResults() {
     scoreTag.style.fontSize = '3em';
     scoreTag.textContent += ' Thanks for playing!';
 }
+
+startGame();
 
 /*for (let i = 0; i < answers.length; i++) {
     answers[i].addEventListener('change', function () {
