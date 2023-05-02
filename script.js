@@ -57,10 +57,10 @@ questionsList.push(q1, q2, q3, q4, q5, q6, q7, q8, q9, q10);
 function renderOptions (questionVariable) {
 
     let prompts = document.getElementsByClassName('answer-label')
-    const answers = document.querySelectorAll('.answer-choice')
+    let answers = document.querySelectorAll('.answer-choice')
     let currentIndex = questionsList.indexOf(questionVariable)
 
-    const solutionVar = questionVariable.answer;
+    let solutionVar = questionVariable.answer;
 
     
     document.getElementById('score-tag').textContent='Your score is: '+score;
